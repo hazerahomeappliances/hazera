@@ -12,21 +12,34 @@ header p{margin-top:6px;opacity:.9}
 .btn{padding:11px 20px;border-radius:30px;text-decoration:none;font-weight:bold;color:#fff}
 .call{background:#e63946}.wa{background:#25d366}.fb{background:#1877f2}
 main{max-width:800px;margin:auto;padding:20px 14px}
-h2{margin:6px 0 14px}
-.product{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px #0002;margin-bottom:18px}
+.catsec{margin-bottom:30px}
+.cathead{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.cathead .e{font-size:26px}
+.cathead h2{font-size:19px}
+.product{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px #0002;margin-bottom:14px}
 .product img{width:100%;display:block}
 .pinfo{padding:14px}
 .pinfo b{display:block;font-size:17px;margin-bottom:8px}
 .price{margin:8px 0}
 .price .old{text-decoration:line-through;color:#999;margin-right:8px}
 .price .new{color:#0a7d4f;font-weight:bold;font-size:22px}
-.order{display:block;text-align:center;background:#0a7d4f;color:#fff;padding:12px;border-radius:30px;text-decoration:none;font-weight:bold;margin-top:10px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{background:#fff;border-radius:14px;padding:16px;box-shadow:0 1px 4px #0002}
-.card b{display:block;font-size:17px}
-.card span{font-size:13px;color:#555}
-.e{font-size:30px}
+.orderbtn{display:block;width:100%;text-align:center;background:#0a7d4f;color:#fff;padding:12px;border-radius:30px;border:none;font-weight:bold;font-size:15px;margin-top:10px}
+.empty{background:#fff;border-radius:14px;padding:18px;color:#888;font-size:14px;box-shadow:0 1px 4px #0002}
 footer{text-align:center;padding:24px 14px 40px;color:#555}
+
+.oform{display:none;padding:14px;border-top:1px solid #eee;margin-top:10px}
+.oform.show{display:block}
+.row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.qtybtn{width:36px;height:36px;border-radius:8px;border:1px solid #ccc;background:#f6f7f9;font-size:18px;font-weight:bold}
+.qtynum{font-size:17px;font-weight:bold;min-width:24px;text-align:center}
+label{display:block;font-size:13px;color:#555;margin-bottom:4px}
+input,select{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;font-size:15px;margin-bottom:12px}
+.locrow{display:flex;gap:10px;margin-bottom:12px}
+.locbtn{flex:1;padding:10px;border-radius:8px;border:1px solid #ccc;background:#fff;font-size:14px;text-align:center}
+.locbtn.active{background:#0a7d4f;color:#fff;border-color:#0a7d4f}
+.total{background:#f6f7f9;border-radius:10px;padding:12px;margin-bottom:12px;font-size:14px}
+.total .sum{font-size:20px;font-weight:bold;color:#0a7d4f}
+.confirmbtn{display:block;width:100%;text-align:center;background:#25d366;color:#fff;padding:13px;border-radius:30px;border:none;font-weight:bold;font-size:15px}
 </style></head><body>
 <header>
 <h1>Hazera Home Appliances</h1>
@@ -39,28 +52,166 @@ footer{text-align:center;padding:24px 14px 40px;color:#555}
 </div>
 </header>
 <main>
-<h2>ফিচারড প্রোডাক্ট</h2>
-<div class="product">
+
+<div class="catsec">
+<div class="cathead"><span class="e">🍚</span><h2>হোম অ্যাপ্লায়েন্স</h2></div>
+
+<div class="product" id="p1">
 <img src="https://i.ibb.co/M5Dq0kdJ/1790149940994.png" alt="HAMKO Electric Kettle">
 <div class="pinfo">
 <b>HAMKO ইলেকট্রিক কেটলি, ১৫০০ ওয়াট, ১.৮ লিটার</b>
 <div class="price"><span class="old">৯৯০৳</span> <span class="new">৮৭০৳</span></div>
-<a class="order" href="https://wa.me/8801750847196?text=আমি%20HAMKO%20ইলেকট্রিক%20কেটলি%20অর্ডার%20করতে%20চাই">অর্ডার করুন</a>
+<button class="orderbtn" onclick="toggleForm('p1')">অর্ডার করুন</button>
+
+<div class="oform" id="form-p1">
+<div class="row">
+<label style="margin:0">পরিমাণ:</label>
+<button class="qtybtn" onclick="changeQty('p1',-1)">−</button>
+<span class="qtynum" id="qty-p1">1</span>
+<button class="qtybtn" onclick="changeQty('p1',1)">+</button>
+</div>
+
+<label>এলাকা</label>
+<div class="locrow">
+<button class="locbtn active" id="loc-p1-city" onclick="setLoc('p1','city')">ঢাকা সিটি</button>
+<button class="locbtn" id="loc-p1-out" onclick="setLoc('p1','out')">ঢাকার বাইরে</button>
+</div>
+
+<label>আপনার নাম</label>
+<input type="text" id="name-p1" placeholder="নাম লিখুন">
+
+<label>মোবাইল নম্বর</label>
+<input type="tel" id="phone-p1" placeholder="01XXXXXXXXX">
+
+<label>ঠিকানা</label>
+<input type="text" id="addr-p1" placeholder="বাসা/এলাকা, থানা, জেলা">
+
+<div class="total">
+পণ্যের দাম: <span id="pprice-p1">৮৭০৳</span><br>
+ডেলিভারি চার্জ: <span id="dcharge-p1">৯০৳</span><br>
+মোট: <span class="sum" id="grandtotal-p1">৯৬০৳</span>
+</div>
+
+<button class="confirmbtn" onclick="confirmOrder('p1','HAMKO ইলেকট্রিক কেটলি',870,'1-3')">অর্ডার কনফার্ম করুন</button>
 </div>
 </div>
-<h2 style="margin-top:26px">আমাদের পণ্য</h2>
-<div class="grid">
-<div class="card"><div class="e">🍚</div><b>হোম অ্যাপ্লায়েন্স</b><span>রাইস কুকার, ব্লেন্ডার, ইন্ডাকশন স্টোভ</span></div>
-<div class="card"><div class="e">🪑</div><b>প্লাস্টিক পণ্য</b><span>ওয়ারড্রোব, চেয়ার, র‍্যাক</span></div>
-<div class="card"><div class="e">🍽️</div><b>কিচেনওয়্যার</b><span>স্টিল, সিরামিক, মেলামাইন</span></div>
-<div class="card"><div class="e">🔥</div><b>গ্যাস স্টোভ</b><span>বিভিন্ন মডেল</span></div>
-<div class="card"><div class="e">🍼</div><b>বেবি আইটেম</b><span>শিশুদের প্রয়োজনীয় জিনিস</span></div>
-<div class="card"><div class="e">✏️</div><b>স্টেশনারি</b><span>খাতা, কলম ও অন্যান্য</span></div>
-<div class="card"><div class="e">🏺</div><b>ডেকোর আইটেম</b><span>ঘর সাজানোর জিনিস</span></div>
-<div class="card"><div class="e">🧸</div><b>খেলনা</b><span>ছোটদের জন্য</span></div>
 </div>
-<h2 style="margin-top:26px">অর্ডার করতে</h2>
-<p>পছন্দের পণ্যের ছবি ও দাম দেখতে আমাদের ফেসবুক পেজে যান, অথবা সরাসরি কল বা WhatsApp করুন।</p>
+
+</div>
+
+<div class="catsec">
+<div class="cathead"><span class="e">🪑</span><h2>প্লাস্টিক পণ্য</h2></div>
+<div class="empty">শীঘ্রই প্রোডাক্ট যোগ করা হবে। জানতে ফেসবুক পেজে যোগাযোগ করুন।</div>
+</div>
+
+<div class="catsec">
+<div class="cathead"><span class="e">🍽️</span><h2>কিচেনওয়্যার</h2></div>
+<div class="empty">শীঘ্রই প্রোডাক্ট যোগ করা হবে। জানতে ফেসবুক পেজে যোগাযোগ করুন।</div>
+</div>
+
+<div class="catsec">
+<div class="cathead"><span class="e">🔥</span><h2>গ্যাস স্টোভ</h2></div>
+<div class="empty">শীঘ্রই প্রোডাক্ট যোগ করা হবে। জানতে ফেসবুক পেজে যোগাযোগ করুন।</div>
+</div>
+
+<div class="catsec">
+<div class="cathead"><span class="e">🍼</span><h2>বেবি আইটেম</h2></div>
+<div class="empty">শীঘ্রই প্রোডাক্ট যোগ করা হবে। জানতে ফেসবুক পেজে যোগাযোগ করুন।</div>
+</div>
+
+<div class="catsec">
+<div class="cathead"><span class="e">✏️</span><h2>স্টেশনারি</h2></div>
+<div class="empty">শীঘ্রই প্রোডাক্ট যোগ করা হবে। জানতে ফেসবুক পেজে যোগাযোগ করুন।</div>
+</div>
+
+<div class="catsec">
+<div class="cathead"><span class="e">🏺</span><h2>ডেকোর আইটেম</h2></div>
+<div class="empty">শীঘ্রই প্রোডাক্ট যোগ করা হবে। জানতে ফেসবুক পেজে যোগাযোগ করুন।</div>
+</div>
+
+<div class="catsec">
+<div class="cathead"><span class="e">🧸</span><h2>খেলনা</h2></div>
+<div class="empty">শীঘ্রই প্রোডাক্ট যোগ করা হবে। জানতে ফেসবুক পেজে যোগাযোগ করুন।</div>
+</div>
+
 </main>
 <footer>© Hazera Home Appliances, পাঁচবিবি, জয়পুরহাট</footer>
+
+<script>
+const state = {};
+
+function deliveryCharge(weightClass, loc){
+  const rates = {
+    '0-1': {city:70, out:130},
+    '1-3': {city:90, out:160},
+    '3-5': {city:120, out:200}
+  };
+  return rates[weightClass][loc];
+}
+
+function toggleForm(id){
+  const f = document.getElementById('form-'+id);
+  f.classList.toggle('show');
+  if(!state[id]) state[id] = {qty:1, loc:'city'};
+}
+
+function changeQty(id, delta){
+  if(!state[id]) state[id] = {qty:1, loc:'city'};
+  state[id].qty = Math.max(1, state[id].qty + delta);
+  document.getElementById('qty-'+id).textContent = state[id].qty;
+  updateTotal(id);
+}
+
+function setLoc(id, loc){
+  if(!state[id]) state[id] = {qty:1, loc:'city'};
+  state[id].loc = loc;
+  document.getElementById('loc-'+id+'-city').classList.toggle('active', loc==='city');
+  document.getElementById('loc-'+id+'-out').classList.toggle('active', loc==='out');
+  updateTotal(id);
+}
+
+function updateTotal(id){
+  const btn = document.querySelector('#'+id+' .confirmbtn');
+  const match = btn.getAttribute('onclick').match(/confirmOrder\('.*?','.*?',(\d+),'(.*?)'\)/);
+  const price = parseInt(match[1]);
+  const wclass = match[2];
+  const s = state[id];
+  const dc = deliveryCharge(wclass, s.loc);
+  const total = price * s.qty + dc;
+  document.getElementById('pprice-'+id).textContent = (price*s.qty)+'৳';
+  document.getElementById('dcharge-'+id).textContent = dc+'৳';
+  document.getElementById('grandtotal-'+id).textContent = total+'৳';
+}
+
+function confirmOrder(id, name, price, wclass){
+  if(!state[id]) state[id] = {qty:1, loc:'city'};
+  const s = state[id];
+  const customerName = document.getElementById('name-'+id).value.trim();
+  const phone = document.getElementById('phone-'+id).value.trim();
+  const addr = document.getElementById('addr-'+id).value.trim();
+
+  if(!customerName || !phone || !addr){
+    alert('অনুগ্রহ করে নাম, মোবাইল নম্বর ও ঠিকানা পূরণ করুন।');
+    return;
+  }
+
+  const dc = deliveryCharge(wclass, s.loc);
+  const total = price * s.qty + dc;
+  const locText = s.loc === 'city' ? 'ঢাকা সিটি' : 'ঢাকার বাইরে';
+
+  const msg = `নতুন অর্ডার:
+পণ্য: ${name}
+পরিমাণ: ${s.qty}টা
+পণ্যের দাম: ${price*s.qty}৳
+ডেলিভারি এলাকা: ${locText}
+ডেলিভারি চার্জ: ${dc}৳
+মোট: ${total}৳
+নাম: ${customerName}
+মোবাইল: ${phone}
+ঠিকানা: ${addr}`;
+
+  const url = 'https://wa.me/8801750847196?text=' + encodeURIComponent(msg);
+  window.open(url, '_blank');
+}
+</script>
 </body></html>
