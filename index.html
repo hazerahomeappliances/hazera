@@ -311,5 +311,11 @@ function confirmOrder(id, name, price, wclass){
   const url = 'https://wa.me/8801774200950?text=' + encodeURIComponent(msg);
   window.open(url, '_blank');
 }
+
+// সব কালারের ছবি আগেই লোড করে রাখা হয়, যাতে ডটে চাপ দিলেই সাথে সাথে বদলায়
+document.querySelectorAll('.swatch').forEach(function(b){
+  var m = (b.getAttribute('onclick')||'').match(/'(https?:[^']+)'/);
+  if(m){ var im = new Image(); im.src = m[1]; }
+});
 </script>
 </body></html>
