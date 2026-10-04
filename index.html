@@ -12,10 +12,6 @@ header p{margin-top:6px;opacity:.9}
 .btn{padding:11px 20px;border-radius:30px;text-decoration:none;font-weight:bold;color:#fff}
 .call{background:#e63946}.wa{background:#25d366}.fb{background:#1877f2}
 main{max-width:800px;margin:auto;padding:20px 14px}
-.catsec{margin-bottom:30px}
-.cathead{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.cathead .e{font-size:26px}
-.cathead h2{font-size:19px}
 .product{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px #0002;margin-bottom:14px}
 .product img{width:100%;display:block}
 .pinfo{padding:14px}
@@ -45,9 +41,12 @@ input,select{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;fon
 .swatch.active{border:3px solid #0a7d4f}
 .imgwrap{position:relative}
 .badge{position:absolute;top:10px;left:10px;background:#e63946;color:#fff;font-size:13px;font-weight:bold;padding:4px 11px;border-radius:20px;z-index:1}
-.catnav{position:sticky;top:0;z-index:10;display:flex;gap:10px;justify-content:center;background:#fff;padding:10px 14px;box-shadow:0 1px 4px #0002}
-.catnav a{padding:8px 18px;border-radius:30px;background:#e8f5ee;color:#0a7d4f;text-decoration:none;font-weight:bold;font-size:14px}
-.catsec{scroll-margin-top:70px}
+.catnav{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:#fff;padding:10px 14px;box-shadow:0 1px 4px #0002}
+.catnav button{padding:8px 14px;border-radius:30px;border:none;background:#e8f5ee;color:#0a7d4f;font-weight:bold;font-size:14px;cursor:pointer}
+.catnav button.active{background:#0a7d4f;color:#fff}
+.product{scroll-margin-top:70px}
+.newb{position:absolute;top:10px;right:10px;background:#ff9800;color:#fff;font-size:13px;font-weight:bold;padding:4px 11px;border-radius:20px;z-index:1}
+.chip{display:inline-block;background:#e8f5ee;color:#0a7d4f;font-size:12px;padding:2px 10px;border-radius:20px;margin-bottom:8px}
 .more{background:#fff;border-radius:14px;padding:18px;text-align:center;color:#555;font-size:14px;box-shadow:0 1px 4px #0002}
 .more a{color:#1877f2;font-weight:bold;text-decoration:none}
 </style></head><body>
@@ -62,59 +61,68 @@ input,select{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;fon
 </div>
 </header>
 <nav class="catnav">
-<a href="#cat-home">🍚 হোম অ্যাপ্লায়েন্স</a>
-<a href="#cat-baby">🍼 বেবি আইটেম</a>
+<button class="active" onclick="filterCat('all',this)">সব পণ্য</button>
+<button onclick="filterCat('home',this)">🍚 হোম অ্যাপ্লায়েন্স</button>
+<button onclick="filterCat('baby',this)">🍼 বেবি আইটেম</button>
 </nav>
 <main>
 
-<div class="catsec" id="cat-home">
-<div class="cathead"><span class="e">🍚</span><h2>হোম অ্যাপ্লায়েন্স</h2></div>
+<div id="list">
 
-<div class="product" id="p1">
-<div class="imgwrap"><span class="badge">২৩% ছাড়</span><img src="https://i.ibb.co/M5Dq0kdJ/1790149940994.png" alt="HAMKO Electric Kettle"></div>
+<div class="product" id="p3" data-cat="baby">
+<div class="imgwrap"><span class="newb">🆕 নতুন</span><span class="badge">২৩% ছাড়</span><img id="img-p3" src="https://i.ibb.co/gL3D2wv0/1791132362696.jpg" alt="বেবি দোলনা SS 502"></div>
 <div class="pinfo">
-<b>HAMKO ইলেকট্রিক কেটলি, ১৫০০ ওয়াট, ১.৮ লিটার</b>
-<div class="price"><span class="old">১০৯০৳</span> <span class="new">৮৪০৳</span> <small style="color:#e53935">(২৫০৳ ছাড়)</small></div>
-<button class="orderbtn" onclick="toggleForm('p1')">অর্ডার করুন</button>
+<span class="chip">🍼 বেবি আইটেম</span>
+<b>বেবি দোলনা, মডেল: S S 502</b>
+<div class="price"><span class="old">৪৬৯০৳</span> <span class="new">৩৬০০৳</span> <small style="color:#e53935">(১০৯০৳ ছাড়)</small></div>
 
-<div class="oform" id="form-p1">
+<div class="colorrow">
+<label>কালার:</label>
+<button class="swatch active" data-cn="গোলাপি" style="background:#f06292" onclick="setColor('p3','গোলাপি','https://i.ibb.co/gL3D2wv0/1791132362696.jpg',this)"></button>
+<button class="swatch" data-cn="নীল" style="background:#29a8e0" onclick="setColor('p3','নীল','https://i.ibb.co/TDnnXS7H/1791132397186.jpg',this)"></button>
+</div>
+
+<button class="orderbtn" onclick="toggleForm('p3')">অর্ডার করুন</button>
+
+<div class="oform" id="form-p3">
 <div class="row">
 <label style="margin:0">পরিমাণ:</label>
-<button class="qtybtn" onclick="changeQty('p1',-1)">−</button>
-<span class="qtynum" id="qty-p1">1</span>
-<button class="qtybtn" onclick="changeQty('p1',1)">+</button>
+<button class="qtybtn" onclick="changeQty('p3',-1)">−</button>
+<span class="qtynum" id="qty-p3">1</span>
+<button class="qtybtn" onclick="changeQty('p3',1)">+</button>
 </div>
 
 <label>এলাকা</label>
 <div class="locrow">
-<button class="locbtn active" id="loc-p1-city" onclick="setLoc('p1','city')">ঢাকা সিটি</button>
-<button class="locbtn" id="loc-p1-out" onclick="setLoc('p1','out')">ঢাকার বাইরে</button>
+<button class="locbtn active" id="loc-p3-city" onclick="setLoc('p3','city')">ঢাকা সিটি</button>
+<button class="locbtn" id="loc-p3-out" onclick="setLoc('p3','out')">ঢাকার বাইরে</button>
 </div>
 
 <label>আপনার নাম</label>
-<input type="text" id="name-p1" placeholder="নাম লিখুন">
+<input type="text" id="name-p3" placeholder="নাম লিখুন">
 
 <label>মোবাইল নম্বর</label>
-<input type="tel" id="phone-p1" placeholder="01XXXXXXXXX">
+<input type="tel" id="phone-p3" placeholder="01XXXXXXXXX">
 
 <label>ঠিকানা</label>
-<input type="text" id="addr-p1" placeholder="বাসা/এলাকা, থানা, জেলা">
+<input type="text" id="addr-p3" placeholder="বাসা/এলাকা, থানা, জেলা">
 
 <div class="total">
-পণ্যের দাম: <span id="pprice-p1">৮৪০৳</span><br>
-ডেলিভারি চার্জ: <span id="dcharge-p1">৭০৳</span><br>
-মোট: <span class="sum" id="grandtotal-p1">৯১০৳</span>
+পণ্যের দাম: <span id="pprice-p3">৩৬০০৳</span><br>
+ডেলিভারি চার্জ: <span id="dcharge-p3">২০০৳</span><br>
+মোট: <span class="sum" id="grandtotal-p3">৩৮০০৳</span>
 </div>
 
-<button class="confirmbtn" onclick="confirmOrder('p1','HAMKO ইলেকট্রিক কেটলি',840,'0-1')">অর্ডার কনফার্ম করুন</button>
+<button class="confirmbtn" onclick="confirmOrder('p3','বেবি দোলনা SS 502',3600,'5-10')">অর্ডার কনফার্ম করুন</button>
 <p style="font-size:12px;color:#888;text-align:center;margin-top:8px">কনফার্ম করার পর WhatsApp খুলবে, সেখানে Send চাপলেই আপনার অর্ডার সম্পন্ন হবে।</p>
 </div>
 </div>
 </div>
 
-<div class="product" id="p2">
-<div class="imgwrap"><span class="badge">২৯% ছাড়</span><img id="img-p2" src="https://i.ibb.co/FqVmf1JZ/1790316852998.jpg" alt="Prestige Multi Cooker 3.0 Litre"></div>
+<div class="product" id="p2" data-cat="home">
+<div class="imgwrap"><span class="newb">🆕 নতুন</span><span class="badge">২৯% ছাড়</span><img id="img-p2" src="https://i.ibb.co/FqVmf1JZ/1790316852998.jpg" alt="Prestige Multi Cooker 3.0 Litre"></div>
 <div class="pinfo">
+<span class="chip">🍚 হোম অ্যাপ্লায়েন্স</span>
 <b>Prestige মাল্টি কুকার, ৩.০ লিটার</b>
 <div class="price"><span class="old">১৩৯০৳</span> <span class="new">৯৯০৳</span> <small style="color:#e53935">(৪০০৳ ছাড়)</small></div>
 
@@ -162,55 +170,44 @@ input,select{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;fon
 </div>
 </div>
 
-</div>
-
-<div class="catsec" id="cat-baby">
-<div class="cathead"><span class="e">🍼</span><h2>বেবি আইটেম</h2></div>
-
-<div class="product" id="p3">
-<div class="imgwrap"><span class="badge">২৩% ছাড়</span><img id="img-p3" src="https://i.ibb.co/gL3D2wv0/1791132362696.jpg" alt="বেবি দোলনা SS 502"></div>
+<div class="product" id="p1" data-cat="home">
+<div class="imgwrap"><span class="badge">২৩% ছাড়</span><img src="https://i.ibb.co/M5Dq0kdJ/1790149940994.png" alt="HAMKO Electric Kettle"></div>
 <div class="pinfo">
-<b>বেবি দোলনা, মডেল: S S 502</b>
-<div class="price"><span class="old">৪৬৯০৳</span> <span class="new">৩৬০০৳</span> <small style="color:#e53935">(১০৯০৳ ছাড়)</small></div>
+<span class="chip">🍚 হোম অ্যাপ্লায়েন্স</span>
+<b>HAMKO ইলেকট্রিক কেটলি, ১৫০০ ওয়াট, ১.৮ লিটার</b>
+<div class="price"><span class="old">১০৯০৳</span> <span class="new">৮৪০৳</span> <small style="color:#e53935">(২৫০৳ ছাড়)</small></div>
+<button class="orderbtn" onclick="toggleForm('p1')">অর্ডার করুন</button>
 
-<div class="colorrow">
-<label>কালার:</label>
-<button class="swatch active" data-cn="গোলাপি" style="background:#f06292" onclick="setColor('p3','গোলাপি','https://i.ibb.co/gL3D2wv0/1791132362696.jpg',this)"></button>
-<button class="swatch" data-cn="নীল" style="background:#29a8e0" onclick="setColor('p3','নীল','https://i.ibb.co/TDnnXS7H/1791132397186.jpg',this)"></button>
-</div>
-
-<button class="orderbtn" onclick="toggleForm('p3')">অর্ডার করুন</button>
-
-<div class="oform" id="form-p3">
+<div class="oform" id="form-p1">
 <div class="row">
 <label style="margin:0">পরিমাণ:</label>
-<button class="qtybtn" onclick="changeQty('p3',-1)">−</button>
-<span class="qtynum" id="qty-p3">1</span>
-<button class="qtybtn" onclick="changeQty('p3',1)">+</button>
+<button class="qtybtn" onclick="changeQty('p1',-1)">−</button>
+<span class="qtynum" id="qty-p1">1</span>
+<button class="qtybtn" onclick="changeQty('p1',1)">+</button>
 </div>
 
 <label>এলাকা</label>
 <div class="locrow">
-<button class="locbtn active" id="loc-p3-city" onclick="setLoc('p3','city')">ঢাকা সিটি</button>
-<button class="locbtn" id="loc-p3-out" onclick="setLoc('p3','out')">ঢাকার বাইরে</button>
+<button class="locbtn active" id="loc-p1-city" onclick="setLoc('p1','city')">ঢাকা সিটি</button>
+<button class="locbtn" id="loc-p1-out" onclick="setLoc('p1','out')">ঢাকার বাইরে</button>
 </div>
 
 <label>আপনার নাম</label>
-<input type="text" id="name-p3" placeholder="নাম লিখুন">
+<input type="text" id="name-p1" placeholder="নাম লিখুন">
 
 <label>মোবাইল নম্বর</label>
-<input type="tel" id="phone-p3" placeholder="01XXXXXXXXX">
+<input type="tel" id="phone-p1" placeholder="01XXXXXXXXX">
 
 <label>ঠিকানা</label>
-<input type="text" id="addr-p3" placeholder="বাসা/এলাকা, থানা, জেলা">
+<input type="text" id="addr-p1" placeholder="বাসা/এলাকা, থানা, জেলা">
 
 <div class="total">
-পণ্যের দাম: <span id="pprice-p3">৩৬০০৳</span><br>
-ডেলিভারি চার্জ: <span id="dcharge-p3">২০০৳</span><br>
-মোট: <span class="sum" id="grandtotal-p3">৩৮০০৳</span>
+পণ্যের দাম: <span id="pprice-p1">৮৪০৳</span><br>
+ডেলিভারি চার্জ: <span id="dcharge-p1">৭০৳</span><br>
+মোট: <span class="sum" id="grandtotal-p1">৯১০৳</span>
 </div>
 
-<button class="confirmbtn" onclick="confirmOrder('p3','বেবি দোলনা SS 502',3600,'5-10')">অর্ডার কনফার্ম করুন</button>
+<button class="confirmbtn" onclick="confirmOrder('p1','HAMKO ইলেকট্রিক কেটলি',840,'0-1')">অর্ডার কনফার্ম করুন</button>
 <p style="font-size:12px;color:#888;text-align:center;margin-top:8px">কনফার্ম করার পর WhatsApp খুলবে, সেখানে Send চাপলেই আপনার অর্ডার সম্পন্ন হবে।</p>
 </div>
 </div>
@@ -234,6 +231,14 @@ function deliveryCharge(weightClass, loc){
     '5-10': {city:200, out:270}
   };
   return rates[weightClass][loc];
+}
+
+function filterCat(c, btn){
+  document.querySelectorAll('.product').forEach(function(p){
+    p.style.display = (c==='all' || p.dataset.cat===c) ? '' : 'none';
+  });
+  document.querySelectorAll('.catnav button').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
 }
 
 function toggleForm(id){
